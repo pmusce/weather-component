@@ -1,15 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+import 'weather-icons/css/weather-icons.min.css'
 
 const Container = styled.div`
-  position: absolute;
+  width: 100%;
   text-align: center;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const Temperature = styled.h1`
@@ -19,18 +15,20 @@ const Temperature = styled.h1`
 
 const Description = styled.div`
   font-size: 20px;
+  text-transform: capitalize;
 `;
 
-const iconStyles = {
-  fontSize: '74px'
-};
+const Icon = styled.i`
+  font-size: 74px;
+  line-height: 1.5;
+`;
 
 class Weather extends React.Component {
   render() {
     return <Container>
-        <span className="glyphicon glyphicon-cloud" style={iconStyles}></span>
-        <Temperature>30°</Temperature>
-        <Description>Mostly Sunny</Description>
+        <Icon className={`wi wi-owm-${this.props.icon}`} />
+        <Temperature>{this.props.temperature}°</Temperature>
+        <Description>{this.props.desc}</Description>
       </Container>
   }
 }
